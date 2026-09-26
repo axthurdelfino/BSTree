@@ -35,3 +35,15 @@ class ArvoreBinaria:
             pai.right = no
 
         return self.raiz
+
+    def buscar(self, key: int):
+        atual = self.raiz
+        while atual is not None:
+            if key == atual.key:
+                return atual
+            if key < atual.key:
+                atual = atual.left
+            else:
+                atual = atual.right
+
+        return No | None
