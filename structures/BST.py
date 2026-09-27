@@ -54,8 +54,6 @@ class ArvoreBinaria:
 
         return atual
 
-
-
     @staticmethod
     def excluir(raiz: No | None, key: int) -> No | None:
         if raiz is None:
@@ -80,7 +78,19 @@ class ArvoreBinaria:
 
         return raiz
 
+    @staticmethod
+    def listar_em_ordem(raiz: No | None) -> list[No]:
 
+        nos: list[No] = []
 
+        def percorrer(atual: No | None) -> None:
+            if atual is None:
+                return atual
+            percorrer(atual.left)
 
+            nos.append(atual)
 
+            percorrer(atual.right)
+
+        percorrer(raiz)
+        return nos
