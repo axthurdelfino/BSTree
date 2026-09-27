@@ -1,5 +1,5 @@
 class No:
-    def __init__(self, key, posicao):
+    def __init__(self, key: int, posicao: int):
         self.key = key
         self.posicao = posicao
         self.left: No | None = None
@@ -7,18 +7,15 @@ class No:
 
 
 class ArvoreBinaria:
-    def __init__(self):
-        self.raiz: No | None = None
+    @staticmethod
+    def inserir(raiz: No, key, posicao) -> No:
+        novo: No = No(key, posicao)
 
-    def inserir(self, key, posicao):
-        no = No(key, posicao)
+        if raiz is None:
+            return novo
 
-        if self.raiz is None:
-            self.raiz = no
-            return self.raiz
-
-        atual = self.raiz
-        pai = atual
+        atual: No | None = raiz
+        pai: No | None = raiz
 
         while atual is not None:
             pai = atual
@@ -30,14 +27,15 @@ class ArvoreBinaria:
             else:
                 atual = atual.right
         if key < pai.key:
-            pai.left = no
+            pai.left = novo
         else:
-            pai.right = no
+            pai.right = novo
 
-        return self.raiz
+        return raiz
 
-    def buscar(self, key: int):
-        atual = self.raiz
+    @staticmethod
+    def buscar(raiz: No, key: int):
+        atual: No | None = raiz
         while atual is not None:
             if key == atual.key:
                 return atual
@@ -46,4 +44,43 @@ class ArvoreBinaria:
             else:
                 atual = atual.right
 
-        return No | None
+        return None
+
+    @staticmethod
+    def menor(raiz: No):
+        atual: No = raiz
+        while atual.left != None:
+            atual = atual.left
+
+        return atual
+
+
+
+    @staticmethod
+    def excluir(raiz: No | None, key: int) -> No | None:
+        if raiz is None:
+            return None
+
+        if key < raiz.key:
+            raiz.left = ArvoreBinaria.excluir(raiz.left, key)
+        elif key > raiz.key:
+            raiz.right = ArvoreBinaria.excluir(raiz.right, key)
+        else:
+            if raiz.left is None and raiz.right is None:
+                return None
+            elif raiz.left is None:
+                return raiz.right
+            elif raiz.right is None:
+                return raiz.left
+            else:
+                aux: No = ArvoreBinaria.menor(raiz.right)
+                raiz.key = aux.key
+                raiz.posicao = aux.posicao
+                raiz.right = ArvoreBinaria.excluir(raiz.right, aux.key)
+
+        return raiz
+
+
+
+
+
