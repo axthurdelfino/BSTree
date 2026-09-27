@@ -8,7 +8,7 @@ class No:
 
 class ArvoreBinaria:
     @staticmethod
-    def inserir(raiz: No, key, posicao) -> No:
+    def inserir(raiz: No | None, key: int, posicao: int) -> No:
         novo: No = No(key, posicao)
 
         if raiz is None:
@@ -34,7 +34,7 @@ class ArvoreBinaria:
         return raiz
 
     @staticmethod
-    def buscar(raiz: No, key: int):
+    def buscar(raiz: No | None, key: int) -> No | None:
         atual: No | None = raiz
         while atual is not None:
             if key == atual.key:
@@ -47,7 +47,7 @@ class ArvoreBinaria:
         return None
 
     @staticmethod
-    def menor(raiz: No):
+    def menor(raiz: No) -> No:
         atual: No = raiz
         while atual.left != None:
             atual = atual.left
@@ -85,7 +85,7 @@ class ArvoreBinaria:
 
         def percorrer(atual: No | None) -> None:
             if atual is None:
-                return atual
+                return
             percorrer(atual.left)
 
             nos.append(atual)
