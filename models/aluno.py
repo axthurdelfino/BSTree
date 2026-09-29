@@ -1,4 +1,5 @@
 from datetime import date
+from math import isfinite
 
 
 class Aluno:
@@ -56,13 +57,11 @@ class Aluno:
     @codigo.setter
     def codigo(self, codigo: int):
         if codigo is None:
-            raise ValueError("O Codigo e obrigatorio")
-
-        if not isinstance(codigo, int):
-            raise TypeError("O Codigo deve ser um numero Inteiro")
-
-        if codigo <= 0:
-            raise ValueError("Codigo nao pode ser negativo nem 0")
+            raise ValueError("Código é obrigatório.")
+        if isinstance(codigo, bool) or not isinstance(codigo, int):
+            raise TypeError("Código deve ser um número inteiro.")
+        if codigo < 1:
+            raise ValueError("Código deve ser maior ou igual a 1.")
 
         self.__codigo = codigo
 
@@ -73,15 +72,12 @@ class Aluno:
     @nome.setter
     def nome(self, nome: str):
         if nome is None:
-            raise ValueError("Nome e obrigatorio")
-
+            raise ValueError("Nome é obrigatório.")
         if not isinstance(nome, str):
-            raise TypeError("O Nome deve ser do tipo texto")
-
+            raise TypeError("Nome deve ser texto.")
         nome = nome.strip()
-
         if not nome:
-            raise ValueError("O nome tem que ser preenchido")
+            raise ValueError("Nome deve ser preenchido.")
 
         self.__nome = nome
 
@@ -92,13 +88,11 @@ class Aluno:
     @data_nascimento.setter
     def data_nascimento(self, data_nascimento: date):
         if data_nascimento is None:
-            raise ValueError("Data e obrigatorio")
-
-        if not isinstance(data_nascimento, date):
-            raise TypeError("A Data de nascimento dever ser do tipo data")
-
+            raise ValueError("Data de nascimento é obrigatório.")
+        if type(data_nascimento) is not date:
+            raise TypeError("Data de nascimento deve ser uma data, sem horário.")
         if data_nascimento > date.today():
-            raise ValueError("Data de nascimento incorreta, esta no futuro.")
+            raise ValueError("Data de nascimento não pode estar no futuro.")
 
         self.__data_nascimento = data_nascimento
 
@@ -109,15 +103,19 @@ class Aluno:
     @peso.setter
     def peso(self, peso: float):
         if peso is None:
-            raise ValueError("Peso eh obrigatorio")
+            raise ValueError("Peso é obrigatório.")
+        if isinstance(peso, bool) or not isinstance(peso, (int, float)):
+            raise TypeError("Peso deve ser um número.")
+        try:
+            peso = float(peso)
+        except OverflowError:
+            raise ValueError("Peso deve ser um número finito.") from None
+        if not isfinite(peso):
+            raise ValueError("Peso deve ser um número finito.")
+        if peso <= 0:
+            raise ValueError("Peso deve ser maior que zero.")
 
-        if not isinstance(peso, (int, float)):
-            raise TypeError("Peso deve ser do tipo float")
-
-        if 0 >= peso:
-            raise ValueError("Peso deve ser maior que 0")
-
-        self.__peso = float(peso)
+        self.__peso = peso
 
     @property
     def altura(self):
@@ -126,12 +124,16 @@ class Aluno:
     @altura.setter
     def altura(self, altura: float):
         if altura is None:
-            raise ValueError("Altura eh obrigatorio")
+            raise ValueError("Altura é obrigatório.")
+        if isinstance(altura, bool) or not isinstance(altura, (int, float)):
+            raise TypeError("Altura deve ser um número.")
+        try:
+            altura = float(altura)
+        except OverflowError:
+            raise ValueError("Altura deve ser um número finito.") from None
+        if not isfinite(altura):
+            raise ValueError("Altura deve ser um número finito.")
+        if altura <= 0:
+            raise ValueError("Altura deve ser maior que zero.")
 
-        if not isinstance(altura, (int, float)):
-            raise TypeError("Altura deve ser do tipo float")
-
-        if 0 >= altura:
-            raise ValueError("Altura deve ser maior que 0")
-
-        self.__altura = float(altura)
+        self.__altura = altura

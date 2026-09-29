@@ -59,21 +59,6 @@ class Repositorio:
 
         return self.model.dict_para_obj(dados)
 
-    def listar(self):
-        nos_ordenados = ArvoreBinaria.listar_em_ordem(self.raiz)
-
-        lista = []
-
-        with open(self.path, "r", encoding="utf-8") as arquivo:
-            for no in nos_ordenados:
-                arquivo.seek(no.posicao)
-                linha = arquivo.readline()
-                dados = json.loads(linha[2:])
-                objeto = self.model.dict_para_obj(dados)
-                lista.append(objeto)
-
-        return lista
-
     def excluir(self, codigo):
         no = ArvoreBinaria.buscar(self.raiz, codigo)
 
@@ -116,3 +101,18 @@ class Repositorio:
 
         no.posicao = nova_posicao
         return registro_atualizado
+
+    def listar(self):
+        nos_ordenados = ArvoreBinaria.listar_em_ordem(self.raiz)
+
+        lista = []
+
+        with open(self.path, "r", encoding="utf-8") as arquivo:
+            for no in nos_ordenados:
+                arquivo.seek(no.posicao)
+                linha = arquivo.readline()
+                dados = json.loads(linha[2:])
+                objeto = self.model.dict_para_obj(dados)
+                lista.append(objeto)
+
+        return lista

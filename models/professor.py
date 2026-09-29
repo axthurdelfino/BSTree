@@ -29,13 +29,11 @@ class Professor:
     @codigo_prof.setter
     def codigo_prof(self, codigo_prof: int):
         if codigo_prof is None:
-            raise ValueError("Insira o codigo do Professor")
-
-        if not isinstance(codigo_prof, int):
-            raise TypeError("O Valor inserido deve ser inteiro")
-
-        if codigo_prof <= 0:
-            raise ValueError("Codigo deve ser maior que 0")
+            raise ValueError("Código do professor é obrigatório.")
+        if isinstance(codigo_prof, bool) or not isinstance(codigo_prof, int):
+            raise TypeError("Código do professor deve ser um número inteiro.")
+        if codigo_prof < 1:
+            raise ValueError("Código do professor deve ser maior ou igual a 1.")
 
         self.__codigo_prof = codigo_prof
 
@@ -46,14 +44,12 @@ class Professor:
     @nome.setter
     def nome(self, nome: str):
         if nome is None:
-            raise ValueError("Insira um nome")
+            raise ValueError("Nome é obrigatório.")
         if not isinstance(nome, str):
-            raise TypeError("O Valor inserido deve ser do tipo texto")
-
+            raise TypeError("Nome deve ser texto.")
         nome = nome.strip()
-
         if not nome:
-            raise ValueError("O Nome deve ser preenchido")
+            raise ValueError("Nome deve ser preenchido.")
 
         self.__nome = nome
 
@@ -64,14 +60,12 @@ class Professor:
     @endereco.setter
     def endereco(self, endereco: str):
         if endereco is None:
-            raise ValueError("Insira um endereco")
+            raise ValueError("Endereço é obrigatório.")
         if not isinstance(endereco, str):
-            raise TypeError("O Valor inserido deve ser do tipo texto")
-
+            raise TypeError("Endereço deve ser texto.")
         endereco = endereco.strip()
-
         if not endereco:
-            raise ValueError("O Endereco deve ser preenchido")
+            raise ValueError("Endereço deve ser preenchido.")
 
         self.__endereco = endereco
 
@@ -82,14 +76,11 @@ class Professor:
     @telefone.setter
     def telefone(self, telefone: str):
         if telefone is None:
-            raise ValueError("Insira um Telefone")
-
+            raise ValueError("Telefone é obrigatório.")
         if not isinstance(telefone, str):
-            raise TypeError("O valor inserido deve obedecer o formato telefone")
-
+            raise TypeError("Telefone deve ser texto.")
         telefone = telefone.strip()
-
         if not telefone:
-            raise ValueError("Preencha o campo Telefone")
+            raise ValueError("Telefone deve ser preenchido.")
 
         self.__telefone = telefone
