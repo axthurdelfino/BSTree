@@ -30,7 +30,7 @@ class Professor:
     def codigo_prof(self, codigo_prof: int):
         if codigo_prof is None:
             raise ValueError("Código do professor é obrigatório.")
-        if isinstance(codigo_prof, bool) or not isinstance(codigo_prof, int):
+        if not isinstance(codigo_prof, int):
             raise TypeError("Código do professor deve ser um número inteiro.")
         if codigo_prof < 1:
             raise ValueError("Código do professor deve ser maior ou igual a 1.")

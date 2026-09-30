@@ -36,7 +36,7 @@ class Matricula:
     def codigo_matricula(self, codigo_matricula: int):
         if codigo_matricula is None:
             raise ValueError("Código da matrícula é obrigatório.")
-        if isinstance(codigo_matricula, bool) or not isinstance(codigo_matricula, int):
+        if not isinstance(codigo_matricula, int):
             raise TypeError("Código da matrícula deve ser um número inteiro.")
         if codigo_matricula < 1:
             raise ValueError("Código da matrícula deve ser maior ou igual a 1.")
@@ -51,7 +51,7 @@ class Matricula:
     def codigo_aluno(self, codigo_aluno: int):
         if codigo_aluno is None:
             raise ValueError("Código do aluno é obrigatório.")
-        if isinstance(codigo_aluno, bool) or not isinstance(codigo_aluno, int):
+        if not isinstance(codigo_aluno, int):
             raise TypeError("Código do aluno deve ser um número inteiro.")
         if codigo_aluno < 1:
             raise ValueError("Código do aluno deve ser maior ou igual a 1.")
@@ -66,9 +66,7 @@ class Matricula:
     def codigo_modalidade(self, codigo_modalidade: int):
         if codigo_modalidade is None:
             raise ValueError("Código da modalidade é obrigatório.")
-        if isinstance(codigo_modalidade, bool) or not isinstance(
-            codigo_modalidade, int
-        ):
+        if not isinstance(codigo_modalidade, int):
             raise TypeError("Código da modalidade deve ser um número inteiro.")
         if codigo_modalidade < 1:
             raise ValueError("Código da modalidade deve ser maior ou igual a 1.")
@@ -83,7 +81,7 @@ class Matricula:
     def quantidade_aulas(self, quantidade_aulas: int):
         if quantidade_aulas is None:
             raise ValueError("Quantidade de aulas é obrigatório.")
-        if isinstance(quantidade_aulas, bool) or not isinstance(quantidade_aulas, int):
+        if not isinstance(quantidade_aulas, int):
             raise TypeError("Quantidade de aulas deve ser um número inteiro.")
         if quantidade_aulas < 1:
             raise ValueError("Quantidade de aulas deve ser maior ou igual a 1.")

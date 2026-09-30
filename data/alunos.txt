@@ -1,0 +1,1 @@
+1|{"codigo": 1, "nome": "Arthur", "data_nascimento": "2004-08-02", "peso": 68.0, "altura": 1.74}

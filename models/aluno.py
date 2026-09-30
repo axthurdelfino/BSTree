@@ -58,7 +58,7 @@ class Aluno:
     def codigo(self, codigo: int):
         if codigo is None:
             raise ValueError("Código é obrigatório.")
-        if isinstance(codigo, bool) or not isinstance(codigo, int):
+        if not isinstance(codigo, int):
             raise TypeError("Código deve ser um número inteiro.")
         if codigo < 1:
             raise ValueError("Código deve ser maior ou igual a 1.")
@@ -104,7 +104,7 @@ class Aluno:
     def peso(self, peso: float):
         if peso is None:
             raise ValueError("Peso é obrigatório.")
-        if isinstance(peso, bool) or not isinstance(peso, (int, float)):
+        if not isinstance(peso, (int, float)):
             raise TypeError("Peso deve ser um número.")
         try:
             peso = float(peso)
@@ -125,7 +125,7 @@ class Aluno:
     def altura(self, altura: float):
         if altura is None:
             raise ValueError("Altura é obrigatório.")
-        if isinstance(altura, bool) or not isinstance(altura, (int, float)):
+        if not isinstance(altura, (int, float)):
             raise TypeError("Altura deve ser um número.")
         try:
             altura = float(altura)

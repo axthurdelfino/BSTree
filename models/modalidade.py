@@ -1,6 +1,3 @@
-from math import isfinite
-
-
 class Modalidade:
     def __init__(
         self,
@@ -48,7 +45,7 @@ class Modalidade:
     def codigo(self, codigo: int):
         if codigo is None:
             raise ValueError("Código é obrigatório.")
-        if isinstance(codigo, bool) or not isinstance(codigo, int):
+        if not isinstance(codigo, int):
             raise TypeError("Código deve ser um número inteiro.")
         if codigo < 1:
             raise ValueError("Código deve ser maior ou igual a 1.")
@@ -79,7 +76,7 @@ class Modalidade:
     def codigo_professor(self, codigo_professor: int):
         if codigo_professor is None:
             raise ValueError("Código do professor é obrigatório.")
-        if isinstance(codigo_professor, bool) or not isinstance(codigo_professor, int):
+        if not isinstance(codigo_professor, int):
             raise TypeError("Código do professor deve ser um número inteiro.")
         if codigo_professor < 1:
             raise ValueError("Código do professor deve ser maior ou igual a 1.")
@@ -94,18 +91,12 @@ class Modalidade:
     def valor_aula(self, valor_aula: float):
         if valor_aula is None:
             raise ValueError("Valor da aula é obrigatório.")
-        if isinstance(valor_aula, bool) or not isinstance(valor_aula, (int, float)):
+        if not isinstance(valor_aula, (int, float)):
             raise TypeError("Valor da aula deve ser um número.")
-        try:
-            valor_aula = float(valor_aula)
-        except OverflowError:
-            raise ValueError("Valor da aula deve ser um número finito.") from None
-        if not isfinite(valor_aula):
-            raise ValueError("Valor da aula deve ser um número finito.")
         if valor_aula <= 0:
             raise ValueError("Valor da aula deve ser maior que zero.")
 
-        self.__valor_aula = valor_aula
+        self.__valor_aula = float(valor_aula)
 
     @property
     def limite_alunos(self):
@@ -115,7 +106,7 @@ class Modalidade:
     def limite_alunos(self, limite_alunos: int):
         if limite_alunos is None:
             raise ValueError("Limite de alunos é obrigatório.")
-        if isinstance(limite_alunos, bool) or not isinstance(limite_alunos, int):
+        if not isinstance(limite_alunos, int):
             raise TypeError("Limite de alunos deve ser um número inteiro.")
         if limite_alunos < 1:
             raise ValueError("Limite de alunos deve ser maior ou igual a 1.")
@@ -132,7 +123,7 @@ class Modalidade:
     def total_alunos(self, total_alunos: int):
         if total_alunos is None:
             raise ValueError("Total de alunos é obrigatório.")
-        if isinstance(total_alunos, bool) or not isinstance(total_alunos, int):
+        if not isinstance(total_alunos, int):
             raise TypeError("Total de alunos deve ser um número inteiro.")
         if total_alunos < 0:
             raise ValueError("Total de alunos deve ser maior ou igual a 0.")
