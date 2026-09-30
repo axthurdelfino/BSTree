@@ -1,20 +1,12 @@
-from collections.abc import Callable
 from datetime import date
 
 
-def ler_inteiro(mensagem: str, verificar: Callable[[int], object] | None = None) -> int:
+def ler_inteiro(mensagem: str) -> int:
     while True:
         try:
-            valor = int(input(mensagem))
+            return int(input(mensagem))
         except ValueError:
             print("Digite um número inteiro.")
-            continue
-        try:
-            if verificar is not None:
-                verificar(valor)
-            return valor
-        except (ValueError, TypeError) as erro:
-            print(erro)
 
 
 def ler_decimal(mensagem: str) -> float:

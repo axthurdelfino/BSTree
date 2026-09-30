@@ -29,12 +29,10 @@ class MatriculaView:
 
     def cadastrar(self) -> None:
         codigo = ler_inteiro("Código da matrícula: ")
-        codigo_aluno = ler_inteiro("Código do aluno: ", self.service.buscar_aluno)
+        codigo_aluno = ler_inteiro("Código do aluno: ")
         aluno = self.service.buscar_aluno(codigo_aluno)
         print(f"Aluno: {aluno.nome}")
-        codigo_modalidade = ler_inteiro(
-            "Código da modalidade: ", self.service.buscar_modalidade
-        )
+        codigo_modalidade = ler_inteiro("Código da modalidade: ")
         modalidade = self.service.buscar_modalidade(codigo_modalidade)
         print(f"Modalidade: {modalidade.descricao}")
         print(

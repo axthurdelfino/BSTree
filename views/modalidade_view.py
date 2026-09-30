@@ -34,9 +34,7 @@ class ModalidadeView:
 
     def ler_modalidade(self, codigo: int, total_alunos: int = 0) -> Modalidade:
         descricao = ler_texto("Descrição: ")
-        codigo_professor = ler_inteiro(
-            "Código do professor: ", self.service.buscar_professor
-        )
+        codigo_professor = ler_inteiro("Código do professor: ")
         professor = self.service.buscar_professor(codigo_professor)
         print(f"Professor: {professor.nome}")
         return Modalidade(
