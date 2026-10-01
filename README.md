@@ -3,14 +3,6 @@
 Sistema de academia em Python 3.10 ou superior, com menus no terminal.
 Não requer bibliotecas externas.
 
-## Executar
-
-Na pasta do projeto:
-
-```sh
-python3 main.py
-```
-
 Cadastre alunos e professores, depois modalidades e matrículas. O menu
 principal também oferece faturamento por modalidade. Datas usam DD/MM/AAAA;
 valores decimais aceitam ponto ou vírgula; altura é informada em metros.
